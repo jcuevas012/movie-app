@@ -4,6 +4,9 @@ import { json } from 'body-parser'
 import cookieSession from 'cookie-session'
 import express, { Application } from 'express'
 
+// @ts-ignore
+import db from './models'
+
 import NotFound from './errors/not-found-error'
 import { errorHandler } from './middlewares/error-handler'
 import { currentUserRouter, signInRouter, signOutRouter, signUpRouter } from './routes'
@@ -37,6 +40,8 @@ const start = async () => {
     if (!process.env.JWT_KEY) {
         throw new Error('JWT_KEY must be defined.')
     }
+
+    await db.sequelize.sync()
 
     app.listen(PORT, () => {
         console.log(`Auth service listening in port ${PORT}`)
