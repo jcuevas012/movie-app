@@ -5,7 +5,6 @@ import requestValidator from '../middlewares/request-validator'
 import utils from '../utils'
 import validation from '../validators/signup-validator'
 
-// @ts-ignore
 import db from '../models'
 
 const router = Router()

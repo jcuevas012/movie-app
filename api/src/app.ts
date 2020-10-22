@@ -6,7 +6,7 @@ import express, { Application } from 'express'
 
 import NotFound from './errors/not-found-error'
 import { errorHandler } from './middlewares/error-handler'
-import { currentUserRouter, signInRouter, signOutRouter, signUpRouter } from './routes'
+import { currentUserRouter, signInRouter, signOutRouter, signUpRouter, actorRouter, movieRouter } from './routes'
 
 const app: Application = express()
 
@@ -24,6 +24,8 @@ app.use('/api/users', currentUserRouter)
 app.use('/api/users', signInRouter)
 app.use('/api/users', signUpRouter)
 app.use('/api/users', signOutRouter)
+app.use('/api/actors', actorRouter)
+app.use('/api/movies', movieRouter)
 
 app.all('*', () => {
     throw new NotFound()
